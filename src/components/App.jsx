@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Board from '../components/Board.jsx';
+import Board from './Board.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
       height: 3,
       width: 7,
       board: [],
-      terrainLib: ['/\\', '__', '||', '~~'],
+      terrainLib: ['/\\', '/\\', '__', '__', '〒', '〒', '〒', '~~', '*'],
     };
 
     this.generateBoard = this.generateBoard.bind(this);
@@ -18,12 +18,12 @@ class App extends React.Component {
 
 
   generateBoard() {
-    let newBoard = [];
-    for (let i = 0; i< this.state.height; i++) {
-      let row = [];
+    const newBoard = [];
+    for (let i = 0; i < this.state.height; i++) {
+      const row = [];
       for (let j = 0; j < this.state.width; j++) {
         row.push(
-          this.state.terrainLib[Math.floor(Math.random() * this.state.terrainLib.length)]
+          this.state.terrainLib[Math.floor(Math.random() * this.state.terrainLib.length)],
         );
       }
       newBoard.push(row);
@@ -34,8 +34,7 @@ class App extends React.Component {
   }
 
   handleFormChange() {
-    console.log()
-
+    console.log();
   }
 
 
@@ -49,19 +48,25 @@ class App extends React.Component {
           <form>
             Height:
             <br />
-            <input type="number" name="height"></input>
+            <input type="number" name="height" />
             <br />
             Width:
             <br />
-            <input type="number" name="width"></input>
+            <input type="number" name="width" />
             <br />
             <button type="submit">Update</button>
           </form>
         </div>
 
         <div className="map-display">
-         height: {this.state.height} <br />
-         width: {this.state.width}
+         height:
+          {' '}
+          {this.state.height}
+          {' '}
+          <br />
+         width:
+          {' '}
+          {this.state.width}
         </div>
 
         <button onClick={this.generateBoard}>Generate</button>

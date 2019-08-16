@@ -8,8 +8,9 @@ class App extends React.Component {
 
     this.state = {
       height: 3,
-      width: 5,
+      width: 7,
       board: [],
+      terrainLib: ['/\\', '__', '||', '~~'],
     };
 
     this.generateBoard = this.generateBoard.bind(this);
@@ -21,13 +22,20 @@ class App extends React.Component {
     for (let i = 0; i< this.state.height; i++) {
       let row = [];
       for (let j = 0; j < this.state.width; j++) {
-        row.push(0);
+        row.push(
+          this.state.terrainLib[Math.floor(Math.random() * this.state.terrainLib.length)]
+        );
       }
       newBoard.push(row);
     }
     this.setState({
       board: newBoard,
     });
+  }
+
+  handleFormChange() {
+    console.log()
+
   }
 
 
@@ -37,19 +45,19 @@ class App extends React.Component {
         <div className="title">
           <h1>Random Map Generator</h1>
         </div>
-        {/* <div className="size-selector">
+        <div>
           <form>
             Height:
             <br />
-            <input type="text" name="firstname"></input>
+            <input type="number" name="height"></input>
             <br />
             Width:
             <br />
-            <input type="text" name="lastname"></input>
+            <input type="number" name="width"></input>
             <br />
-            <button type="button">Make Map</button>
+            <button type="submit">Update</button>
           </form>
-        </div> */}
+        </div>
 
         <div className="map-display">
          height: {this.state.height} <br />
